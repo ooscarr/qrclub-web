@@ -10,63 +10,87 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
+<link ref="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-styles/color.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../bower_components/granite-qrcode-generator/granite-qrcode-generator.html">
 
 <dom-module id="my-view1">
+	
   <template>
     <style include="shared-styles">
       :host {
         display: block;
-
         padding: 10px;
       }
+      paper-button > * {
+        vertical-align: middle;
+        text-transform: none;
+    font-family: 'Roboto', 'Noto', sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+      }
     </style>
-
-    <div class="card">
-			
-			<firebase-app auth-domain="qrclub-94a09.firebaseapp.com"
+			<firebase-app 
+				name="qrclub"
+				auth-domain="qrclub-94a09.firebaseapp.com"
 				database-url="https://qrclub-94a09.firebaseio.com/"
-				api-key="">
+				api-key=""></firebase-app>
 				<firebase-auth
 					id="auth"
 					user="{{user}}"
 					provider="google"
 					on-error="handleError"></firebase-auth>
-				<div>
+    <div class="card">
+				<div class="circle">1</div>
+				<h1>View One {{greeting}} [[user.displayName]]</h1>
+				
+				<div><granite-qrcode-generator
+						data="holi"
+						mode="alphanumeric" auto></granite-qrcode-generator></div>
+				<div><button on-click="signIn">Polymer Project</button>
 				<paper-button raised on-tap="login" hidden$="[[user]]">Inicia Sesión</paper-button>
 				<paper-button raised on-tap="logout" hidden$="[[!user]]">Cierra Sesión</paper-button></div>
-				<div class="circle">1</div>
-				<h1>View One [[user.displayName]]</h1>
 				<p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
 				<p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-			</firebase-app>
     </div>
+			
   </template>
 
   <script>
+		// Define the element's API using an ES2015 class
     class MyView1 extends Polymer.Element {
-      static get is() { return 'my-view1'; }
+      static get is() { return 'my-view1';
+			}
 			
-			//EC6 polymer 2.0 style of code
-			//https://github.com/Polymer/polymer/blob/7836e6c45035f789479d69ea05ac4e9070f6dafe/README.md
-			 
-			// Define property/attribute API:
+			// Declare properties for the element's public API
 			static get properties() {
 				return {
 					// https://youtu.be/SkhCs-IDgS4?t=11m51s
 					user: Object,
-					statusKnown: Object
+					greeting: {
+                type: String,
+                value: "Hello!"
+              }
 				};
 			}
 			
+			// Add methods to the element's public API
+			signIn() {
+        this.fire('sign-in', null, { bubbles: false });
+      }
+			
 			login() {
-        return this.$.auth.signInWithPopUp();
-        }
-				
-				logout(){
-				return this.$.auth.signOut();	
-				}
+			 //auth.signInAnonymously();
+			 firebase.
+			 this.$.auth.signInWithPopUp();
+			}
+
+			logout(){
+			return this.$.auth.signOut();	
+			}
 
 			/*myNameChanged(myName) {
 				this.textContent = 'Hi! My name is ' + myName;
@@ -74,6 +98,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			
     }
 
+		// Register the x-custom element with the browser
     window.customElements.define(MyView1.is, MyView1);
   </script>
 </dom-module>
