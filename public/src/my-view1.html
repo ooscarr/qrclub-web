@@ -54,8 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
 		// Define the element's API using an ES2015 class
     class MyView1 extends Polymer.Element {
-      static get is() { return 'my-view1';
-			}
+      static get is() { return 'my-view1'; }
 			
 			// Declare properties for the element's public API
 			static get properties() {
@@ -63,25 +62,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 					// https://youtu.be/SkhCs-IDgS4?t=11m51s
 					user: Object,
 					greeting: {
-							type: String,
-							value: "Hello,"
-						}
+						type: String,
+						value: "Hello,"
+					}
 				};
 			}
-			
+
 			// Add methods to the element's public API
 			signIn() {
-        this.fire('sign-in', null, { bubbles: false });
-      }
-			
+				this.fire('sign-in', null, { bubbles: false });
+			}
+
 			login() {
-			 //auth.signInAnonymously();
-			 firebase.
-			 this.$.auth.signInWithPopUp();
+				this.$.auth.signInWithPopUp();
 			}
 
 			logout(){
-			return this.$.auth.signOut();	
+				return this.$.auth.signOut();	
 			}
 
 			/*myNameChanged(myName) {
