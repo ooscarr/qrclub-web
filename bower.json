@@ -6,7 +6,7 @@
   "license": "https://polymer.github.io/LICENSE.txt",
   "dependencies": {
     "app-layout": "PolymerElements/app-layout#^2.0.1",
-    "app-route": "PolymerElements/app-route#^2.0.0",
+		"app-route":"PolymerElements/app-route#^2.0.0",
     "granite-qrcode-generator": "LostInBrittany/granite-qrcode-generator#^1.1.2",
     "granite-qrcode-scanner": "LostInBrittany/granite-qrcode-scanner#^1.5.1",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",

@@ -1,0 +1,36 @@
+[debug] [2017-07-15T16:34:43.754Z] ----------------------------------------------------------------------
+[debug] [2017-07-15T16:34:43.759Z] Command:      /usr/bin/nodejs /usr/local/bin/firebase serve
+[debug] [2017-07-15T16:34:43.760Z] CLI Version:  3.9.1
+[debug] [2017-07-15T16:34:43.760Z] Platform:     linux
+[debug] [2017-07-15T16:34:43.760Z] Node Version: v6.11.1
+[debug] [2017-07-15T16:34:43.760Z] Time:         Sat Jul 15 2017 12:34:43 GMT-0400 (CLT)
+[debug] [2017-07-15T16:34:43.760Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-07-15T16:34:43.779Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-07-15T16:34:43.780Z] > authorizing via signed-in user
+[debug] [2017-07-15T16:34:43.784Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-07-15T16:34:43.785Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/bniQ2fKYcI5k7St2nj2TrZ-e0neE8REK8ODgvFZH1P4',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Jul 15 2017 12:34:43 GMT-0400 (CLT)
+[debug] [2017-07-15T16:34:44.346Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-15T16:34:44.418Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/qrclub-94a09  
+ Sat Jul 15 2017 12:34:44 GMT-0400 (CLT)
+[debug] [2017-07-15T16:34:45.945Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-15T16:34:45.947Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/qrclub-94a09/tokens  
+ Sat Jul 15 2017 12:34:45 GMT-0400 (CLT)
+[debug] [2017-07-15T16:34:47.187Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/percyval/Desarrollos/Web/qrclub-web'...
+[info] 
+[debug] [2017-07-15T16:34:47.192Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/qrclub-94a09  
+ Sat Jul 15 2017 12:34:47 GMT-0400 (CLT)
+[debug] [2017-07-15T16:34:48.427Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-15T16:34:48.427Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/19455154036/clients/_:getWebAppConfig  
+ Sat Jul 15 2017 12:34:48 GMT-0400 (CLT)
+[debug] [2017-07-15T16:34:50.113Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
