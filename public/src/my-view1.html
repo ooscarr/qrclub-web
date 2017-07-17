@@ -10,8 +10,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
-<link ref="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-styles/color.html">
+<link ref="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="../bower_components/granite-qrcode-generator/granite-qrcode-generator.html">
@@ -28,23 +28,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		<firebase-app 
 			name="qrclub"
 			auth-domain="qrclub-94a09.firebaseapp.com"
-			database-url="https://qrclub-94a09.firebaseio.com/"
-			api-key=""></firebase-app>
+			database-url="https://qrclub-94a09.firebaseio.com"
+			api-key=""> </firebase-app>
 		<firebase-auth
 			id="auth"
+			app-name="qrclub"
 			user="{{user}}"
 			provider="google"
-			on-error="handleError"></firebase-auth>
+			on-error="handleError"> </firebase-auth>
     <div class="card">
 				<div class="circle">1</div>
-				<h1>View One. {{greeting}} [[user.displayName]]</h1>
-				<qr-code data="hello world!"></qr-code>
-				<div><granite-qrcode-generator
+				<h1>{{greeting}} [[user.displayName]]</h1>
+				<div><!--<granite-qrcode-generator
 						data="holi"
-						mode="alphanumeric" auto></granite-qrcode-generator></div>
-				<div><button on-click="signIn">Polymer Project</button>
-				<paper-button raised on-tap="login" hidden$="[[user]]">Inicia Sesión</paper-button>
-				<paper-button raised on-tap="logout" hidden$="[[!user]]">Cierra Sesión</paper-button></div>
+						mode="alphanumeric" auto></granite-qrcode-generator>--></div>
+				<div><button on-click="login" hidden$="[[user]]">Inicia Sesión</button>
+				<div><button on-click="logout" hidden$="[[!user]]">Cierra Sesión</button></div>
 				<p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
 				<p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
     </div>
@@ -63,27 +62,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 					user: Object,
 					greeting: {
 						type: String,
-						value: "Hello,"
+						//No problem, you can look
+						value: "Hello, "
 					}
 				};
 			}
 
-			// Add methods to the element's public API
-			signIn() {
-				this.fire('sign-in', null, { bubbles: false });
-			}
-
 			login() {
-				this.$.auth.signInWithPopUp();
+				this.$.auth.signInWithPopup()
+					.then(function(response) {
+						// successful authentication response here
+					})
+					.catch(function(error) {
+						// unsuccessful authentication response here
+						console.log(error);
+					});
 			}
 
 			logout(){
-				return this.$.auth.signOut();	
+				return this.$.auth.signOut();
+				//this.greeting='Hello, stranger';
 			}
-
-			/*myNameChanged(myName) {
-				this.textContent = 'Hi! My name is ' + myName;
-			}*/
 			
     }
 
