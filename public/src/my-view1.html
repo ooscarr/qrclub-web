@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link ref="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
-<link rel="import" href="../bower_components/granite-qrcode-generator/granite-qrcode-generator.html">
+<script src="../bower_components/qrious/dist/qrious.min.js"></script>
 
 <dom-module id="my-view1">
 	
@@ -24,6 +24,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         padding: 10px;
       }
+			#qranto{
+				display: none;
+			}
     </style>
 		<firebase-app 
 			name="qrclub"
@@ -34,18 +37,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			id="auth"
 			app-name="qrclub"
 			user="{{user}}"
-			provider="google"
 			on-error="handleError"> </firebase-auth>
     <div class="card">
-				<div class="circle">1</div>
-				<h1>{{greeting}} [[user.displayName]]</h1>
-				<div><!--<granite-qrcode-generator
-						data="holi"
-						mode="alphanumeric" auto></granite-qrcode-generator>--></div>
-				<div><button on-click="login" hidden$="[[user]]">Inicia Sesión</button>
-				<div><button on-click="logout" hidden$="[[!user]]">Cierra Sesión</button></div>
-				<p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-				<p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+			<!--<div><button on-click="logout" hidden$="[[!user]]">Cierra Sesión</button></div>-->
+			<h1>{{greeting}} [[user.displayName]]</h1>
+			<!--<div><button on-click="login" hidden$="[[user]]">Inicia Sesión</button></div>-->
+			<div id="qranto"><img width="160" height="160" alt="QR" src="{{qreeting}}" /></div>
+			<div><p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
+			<p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+				</div>
     </div>
 			
   </template>
@@ -62,14 +62,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 					user: Object,
 					greeting: {
 						type: String,
-						//No problem, you can look
-						value: "Hello, "
+						value: "Check-In "
+					},
+					user: {
+						type: Object,
+						value: null,
+						observer: '_userChanged'
 					}
 				};
 			}
 
 			login() {
-				this.$.auth.signInWithPopup()
+				this.$.auth.signInAnonymously()
 					.then(function(response) {
 						// successful authentication response here
 					})
@@ -80,9 +84,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			}
 
 			logout(){
-				return this.$.auth.signOut();
-				//this.greeting='Hello, stranger';
+				if (this.$.auth) {
+					return this.$.auth.signOut();
+        }
 			}
+			
+			qrant(){
+				const qrdd = new QRious();
+				qrdd.value = this.user.uid;
+				this.qreeting = qrdd.toDataURL();
+				
+			}
+			
+			_userChanged(){
+				if(this.user){
+					this.qrant();
+					this.$.qranto.style.display = 'block';
+				} else{
+					this.login();
+				}
+			}
+				
 			
     }
 
